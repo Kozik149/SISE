@@ -1,4 +1,5 @@
 from helper import Helper
+from program import WorkWithFile
 from queue import Queue
 
 class Bfs:
@@ -12,18 +13,18 @@ class Bfs:
     def steps(self, root):
         self.to_search.append(root)
         while (len(self.to_search) > 0 and self.solved is False):
-            current_vert = self.to_search.popleft()
-            self.searched.append(current_vert)
-            if (current_vert.goalCheck()):
+            current_vertex = self.to_search.popleft()
+            self.searched.append(current_vertex)
+            if (current_vertex.goalCheck()):
                 self.solved = True
-                self.solution = Helper().track(current_vert)
+                self.solution = Helper().track(current_vertex)
                 break
-            current_vert.make_children(self.order)
-            for i in range(len(current_vert.children)): #TODO
-                if (current_vert.children[i] not in self.to_search and current_vert.children[i] not in self.searched):
-                    self.to_search.append(current_vert.children[i])
+            current_vertex.make_children(self.order)
+            for i in range(len(current_vertex.children)): #TODO
+                if (current_vertex.children[i] not in self.to_search and current_vertex.children[i] not in self.searched):
+                    self.to_search.append(current_vertex.children[i])
 
-        visited = len(self.searched)
-        processed = len(self.searched) + len(self.to_search)
-        deepest = self.solution[0].depth
+        WorkWithFile.visited = len(self.searched)
+        WorkWithFile.processed = len(self.searched) + len(self.to_search)
+        WorkWithFile.deepest = self.solution[0].depth
         return self.solution

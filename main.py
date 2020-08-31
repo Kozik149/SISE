@@ -11,10 +11,7 @@ if __name__ == '__main__':
     solution_file = sys.argv[4]
     statistic_file = sys.argv[5]
     work_with_file = WorkWithFile()
-    init_vertex = Vertex(work_with_file.readBoard(input_file))
-    visited = None
-    processed = None
-    deepest = None
+    init_vertex = Vertex(work_with_file.read_board(input_file))
 
     start_time = time.process_time()
 
@@ -27,8 +24,8 @@ if __name__ == '__main__':
     solution = switch.get(algorithm.lower())
 
     to_solution_file = work_with_file.prepare_solution(solution)
-    to_stats_file = work_with_file.prepareStats(solution, start_time, end_time)
+    to_stats_file = work_with_file.prepare_stats(solution, start_time, end_time)
 
-    work_with_file.writeToFile(solution_file, to_solution_file)
-    work_with_file.writeToFile(statistic_file, to_stats_file)
+    work_with_file.write_to_file(solution_file, to_solution_file)
+    work_with_file.write_to_file(statistic_file, to_stats_file)
 
